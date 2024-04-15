@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { ApiService } from '../api.service'; // Assuming your service is in the same directory
 
 @Component({
   selector: 'app-world',
   templateUrl: './world.component.html',
   styleUrl: './world.component.scss'
 })
-export class WorldComponent  /*implements AfterViewInit */ {
+export class WorldComponent  {
   //We use ViewChild decorate to get to our SVG image.
   @ViewChild('worldMap', { static: false}) worldMap!: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private apiService: ApiService) { }
 
   onSvgLoad() {
     const svg = this.worldMap.nativeElement.contentDocument;
@@ -25,32 +26,18 @@ export class WorldComponent  /*implements AfterViewInit */ {
     });
   }
 
-  //After the page has loaded, initialize the SVG 
-  // ngAfterViewInit() {
-  //   const svg = this.worldMap.nativeElement.contentDocument;
-  //   const paths = svg.querySelectorAll('path');
-  //   //Listen for Click events on each path
-  //   paths.forEach((path: SVGPathElement) => {
-  //     this.renderer.listen(path, 'click', (event) => {
-  //       this.onCountryClick(event);
-  //     });
-  //   });
-  // }
-
  //When a country is clicked, we capture the countries name and pass it to getCountryInfo() 
   onCountryClick(event: MouseEvent) {
     const target = event.target as Element;
-    const countryCode = target.getAttribute('name');
+    const countryCode = target.getAttribute('id');
     console.log('Clicked country code:', countryCode);
+
     if (countryCode) {
-      this.getCountryInfo(countryCode);
-    }
+      this.apiService.getCountryInfo(countryCode).subscribe(countryData => {
+        console.log('Country Details:', countryData); 
+
+        // Update your UI or do further tasks with the countryData
+    });
   }
-
-  //here we need to reach out to our API to grab the countries info
-  getCountryInfo(countryCode: string) {
-    //We use the path we are fed from onCountryClick to reach out to our Worldbank API to get information for the given country
   }
-
-
 }
