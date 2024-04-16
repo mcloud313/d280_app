@@ -39,20 +39,20 @@ export class WorldComponent  {
         console.log(countryData);
         
         if (this.countryNameElement) {
-          console.log((countryData as any)[0][0].name);
-          this.countryNameElement.nativeElement.textContent = (countryData as any)[0][0].name;
+          console.log((countryData as any)['0'].name); 
+          this.countryNameElement.nativeElement.textContent = (countryData as any)[0].name;
         }
         if (this.countryCapitalElement) {
-          this.countryCapitalElement.nativeElement.textContent = (countryData as any)[0][0].capitalCity;
+          this.countryCapitalElement.nativeElement.textContent = (countryData as any)[0].capitalCity;
         }
         if (this.countryRegionElement) {
-          this.countryRegionElement.nativeElement.textContent = (countryData as any)[0][0].region.value;
+          this.countryRegionElement.nativeElement.textContent = (countryData as any)[0].adminregion.value;
         }
         if (this.countryIncomeElement) {
-          this.countryIncomeElement.nativeElement.textContent = (countryData as any)[0][0].countryIncome.value;
+          this.countryIncomeElement.nativeElement.textContent = (countryData as any)[0].incomeLevel.value;
         }
-          this.countryLongitudeElement.nativeElement.textContent = (countryData as any)[0][0].countryLongitude.value;
-          this.countryLatitudeElement.nativeElement.textContent = (countryData as any)[0][0].countryLatitude.value;
+          this.countryLongitudeElement.nativeElement.textContent = (countryData as any)[0].longitude;
+          this.countryLatitudeElement.nativeElement.textContent = (countryData as any)[0].latitude;
       
     });
   }
