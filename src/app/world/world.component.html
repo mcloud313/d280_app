@@ -1,3 +1,19 @@
-<div class="left-column">
-    <object id="worldMap" type="image/svg+xml" data="assets/world.svg" #worldMap (load)="onSvgLoad()">World Map</object>
+
+
+<div class="app-container">
+  <div class="map-column">
+    <div class="map-container">
+      <object type="image/svg+xml" data="assets/world.svg" #worldMap (load)="onSvgLoad()">
+      </object>
+    </div>
+  </div>
+  
+  <div class="info-column">
+    <h2 #countryName></h2> 
+    <p><strong>Capital:</strong> <span #countryCapital></span></p>
+    <p><strong>Region:</strong> <span #countryRegion></span></p> 
+    <p><strong>Income Level:</strong> <span #countryIncome></span></p>
+    <p><strong>Longitude:</strong> <span #countryLongitude></span></p>
+    <p><strong>Latitude:</strong> <span #countryLatitude></span></p>
+  </div>
 </div>

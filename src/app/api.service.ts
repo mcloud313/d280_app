@@ -28,8 +28,6 @@ export class ApiService {
       map(country => {
          return {
           ...country,
-          capitalLongitude: country.longitude, 
-          capitalLatitude: country.latitude
         };
       })
     );
